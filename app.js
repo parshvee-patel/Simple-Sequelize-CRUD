@@ -1,19 +1,18 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require("express")
+import bodyParser from 'body-parser';
 const app = express();
 
-const userRouter = require('./router/user');
+import { userRouter } from './router/user';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(userRouter);
+
 // simple route
-
-
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Sequelize application." });
-  });
+  res.json({ message: "Welcome to Sequelize application." });
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

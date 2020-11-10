@@ -1,7 +1,7 @@
-const db = require('../models');
+import { db } from '../models';
 
 // Create a User
-exports.create = async (user, res) => {
+const create = async (user, res) => {
     // Save to MySQL database
     db.User.create({
         firstName: user.body.firstName,
@@ -17,7 +17,7 @@ exports.create = async (user, res) => {
 };
 
 // Fetch all Users
-exports.findAll = (req, res) => {
+const findAll = (req, res) => {
     db.User.findAll().then(users => {
         res.status(200).json({ "message": "get ALL User", "data": users });
         //    return users;
@@ -29,7 +29,7 @@ exports.findAll = (req, res) => {
 };
 
 // Find a User by Id
-exports.findById = async (req, res) => {
+const findById = async (req, res) => {
     db.User.findOne({
         where: {
             id: req.params.id
@@ -45,7 +45,7 @@ exports.findById = async (req, res) => {
 };
 
 // Update a User
-exports.update = (req, res) => {
+const update = (req, res) => {
     db.User.update(
         {
             firstName: req.body.firstName,
@@ -68,7 +68,7 @@ exports.update = (req, res) => {
 };
 
 // Delete a User based on Id
-exports.delete = (req, res) => {
+const deleteUser = (req, res) => {
     db.User.destroy({
         where: {
             id: req.params.id
@@ -81,4 +81,8 @@ exports.delete = (req, res) => {
         return 0;
         // handle error;
     });
-};
+}
+
+export {
+    create, update, deleteUser, findAll, findById
+}
