@@ -1,0 +1,5 @@
+# dot env enviornment variable file
+.env
+
+#Node Modules file
+node_modules
